@@ -120,8 +120,7 @@ Merge single items while sorting 2 items at a time. Complex : n(Log n)
 ### Quick Sort: (Fastest sort for bigger array)
 PivotIndex = n/2
 Split the array in 3 groups (<, = , >) of pivot item, quicksort each group and merge them
-
-
+![Image of Quicksort snippet](https://github.com/SatishBirajdar/SwiftCodingInterviewTips/blob/master/import%20Foundation.png)
 
 ## Functional programming
 ### Reduce:
