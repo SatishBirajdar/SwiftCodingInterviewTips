@@ -143,3 +143,17 @@ for i in 0...values.count-1 {
   print(values[i])
 }
 ```
+## Convert decimal to binary:
+let num = 22
+let str = String(num, radix: 2)
+print(str)
+
+## String to chars:
+let characters = Array(string)
+
+## Largest number of Array:
+```
+let largest = binaryGaps.reduce(Int.min, { max($0, $1) })
+```
+## Array is empty
+binaryGaps.isEmpty  ==> checks if empty
