@@ -7,20 +7,25 @@
 
 ## Some Concepts:
 ### Enumerated:
+```
 let array = ["Apples", "Peaches", "Plums"]
 for (index, item) in array.enumerated() {
     print("Found \(item) at position \(index)")
 }
+```
 
 ### Generic Types:
+```
 Struct Pair<T1, T2>{
 	var first: T1
 	var second: T2
 }
 Let floatFloatPair = Pair<Float, Float>(first: 0.3, second: 0.5)
 Let stringStringPair = Pair(first: “first string”, second: “second string”)
+```
 
 ### Generic Functions / Equatable:
+```
 Func isEqual<T: Equatable> (left: T, right: T) -> Bool {
 	return left == right
 }
@@ -38,22 +43,27 @@ Struct Contact: Equatable{
 Let oldCampus = Contact(name: “A”, address: “Address 1”)
 Let newCampus = Contact(name: “B”, address: “Address 2”)
 print(isEqual(left:oldCampus, right:newCampus))
+```
 
 ### Complexity:
-Constant time = O(1)
-Linear time = O(n)
-Logarithmic = O(log n)
-Quadratic time = O(n^2)
-Triplatic time = O(n^3)
+- Constant time = O(1)
+- Linear time = O(n)
+- Logarithmic = O(log n)
+- Quadratic time = O(n^2)
+- Triplatic time = O(n^3)
 
 ## Datastructure:
 ### Array:
 Use array only when order and if items has to be of same type. And if the items need to be accessed repeatedly
+```
 Arr.insert(“new element”, at: 2)
 Arr.remove(at:2)
+```
 
 ### Set:
 Use it, if the items need to be unique and unordered. Or when we need Union or Intersection
+
+```
 Set.insert(“new element”)
 Set.remove(”element”)
 Set.sorted()
@@ -64,11 +74,13 @@ Set1.subtracting(set2)
 Set1 = [3,4,5]
 Set2 = [2,3,4]
 Let output = Set1.symmetricDifference(set2) = [2,5]
+```
 
 ### Hashable: (not clear yet)
 Use it when keys need to be unique
 
 ### Dictionary:
+```
 Var dict : [Int: String]
 Var dict = Dictionary<Int, string>()
 
@@ -84,9 +96,12 @@ For value in dict.values {
 
 dict[2]= “new value”.     -> update an existing value for an index ‘2’
 dict[3] = nil   -> remove value for index ‘3’
+```
 
 ## Swap:
+```
 Swap(&a, &b)
+```
 
 ## Sorting
 Selection Sort: (http://sorting.at/) Select the smaller forward item in the array and swap with the current item. With 2 for loops
@@ -111,14 +126,16 @@ Split the array in 3 groups (<, = , >) of pivot item, quicksort each group and m
 ## Functional programming
 ### Reduce:
 Reduce can be used on array or sets to calculate the sum of all items.
-Array: let reducedNumberSum = numbers.reduce(0) { $0 + $1 }
-Set: let reducedSet = numbers.reduce(0) { $0 + $1 }
+- Array: let reducedNumberSum = numbers.reduce(0) { $0 + $1 }
+- Set: let reducedSet = numbers.reduce(0) { $0 + $1 }
 
 ### FlatMap:
+```
 Let arr = [“ABC”, “DEF”, “GHI”]
 let flatMapped = arr.flatMap{$0}
-
+```
 ## For loop:
+```
 for value in values {
   print(value)
 }
@@ -126,3 +143,4 @@ for value in values {
 for i in 0...values.count-1 {
   print(values[i])
 }
+```
