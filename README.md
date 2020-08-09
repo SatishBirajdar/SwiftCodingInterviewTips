@@ -1,4 +1,4 @@
-# Swift Coding Interview tips:
+# Swift Coding Interview Revision/tips:
 
 - Use guard where necessary to “force stop/return” the function 
 - Use recursion where necessary
@@ -76,14 +76,16 @@ Set2 = [2,3,4]
 Let output = Set1.symmetricDifference(set2) = [2,5]
 ```
 
-### Hashable: (not clear yet)
-Use it when keys need to be unique
-
 ### Dictionary:
 ```
 Var dict : [Int: String]
 Var dict = Dictionary<Int, string>()
+```
 
+
+### Hashable: (not clear yet)
+Use it when keys need to be unique
+```
 Var dict = Dictionary<AnyHasable, Any>().           === recommended for JSON
 
 for(key, value) in dict {
@@ -130,10 +132,12 @@ Reduce can be used on array or sets to calculate the sum of all items.
 
 ### FlatMap:
 ```
-Let arr = [“ABC”, “DEF”, “GHI”]
+let arr = ["ABC", "DEF", "GHI"]
 let flatMapped = arr.flatMap{$0}
+print(flatMapped)        // ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
 ```
-## For loop:
+## Some basics and tricks
+### For loop:
 ```
 for value in values {
   print(value)
@@ -143,17 +147,22 @@ for i in 0...values.count-1 {
   print(values[i])
 }
 ```
-## Convert decimal to binary:
+### Convert decimal to binary:
+```
 let num = 22
 let str = String(num, radix: 2)
 print(str)
+```
 
-## String to chars:
-let characters = Array(string)
-
-## Largest number of Array:
+### String to chars:
+```
+let characters = Array(string)    // or use flatMap
+```
+### Largest number of Array:
 ```
 let largest = binaryGaps.reduce(Int.min, { max($0, $1) })
 ```
-## Array is empty
+### Array is empty
+```
 binaryGaps.isEmpty  ==> checks if empty
+```
