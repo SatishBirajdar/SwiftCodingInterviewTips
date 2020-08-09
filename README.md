@@ -100,6 +100,254 @@ dict[2]= “new value”.     -> update an existing value for an index ‘2’
 dict[3] = nil   -> remove value for index ‘3’
 ```
 
+### Stack:
+```
+struct Stack {
+  fileprivate var array: [String] = []
+  
+  mutating func push(_ element: String) {
+    array.append(element)
+  }
+
+  mutating func pop() -> String? {
+    return array.popLast()
+  }
+}
+
+var rwBookStack = Stack()
+rwBookStack.push("3D Games by Tutorials")
+rwBookStack.pop()
+
+```
+
+### Queue:
+```
+struct Queue<T> {
+  private var elements: [T] = []
+
+  mutating func enqueue(_ value: T) {
+    elements.append(value)
+  }
+
+  mutating func dequeue() -> T? {
+    guard !elements.isEmpty else {
+      return nil
+    }
+    return elements.removeFirst()
+  }
+
+  var head: T? {
+    return elements.first
+  }
+
+  var tail: T? {
+    return elements.last
+  }
+}
+var queue = Queue<String>()
+queue.enqueue("Adam")
+queue.enqueue("Julia")
+queue.enqueue("Ben")
+
+// we have 3 customers to serve, we're going to serve them in order of arrived
+let serving = queue.dequeue() // { Ben -> Julia -> Adam }   removed Adam
+let nextToServe = queue.head // { Ben -> Julia }
+```
+### Linked List:
+```
+class Node {
+  var data: String
+  var next: Node?
+  init(data: String){
+    self.data = data
+  }
+}
+
+let node1 = Node(data: "A")
+let node2 = Node(data: "B")
+let node3 = Node(data: "C")
+node1.next = node2
+node2.next = node3
+node3.next = nil
+
+func parseNodes(fromNode: Node?){
+  guard let validNode = fromNode else {
+    return
+  }
+  print(validNode.data)
+  parseNodes(fromNode: validNode.next)
+}
+
+parseNodes(fromNode: node1)
+```
+### Tree (includes Root, Node, Leaf)
+```
+class Node {
+  var value: String
+  var children: [Node] = []
+  weak var parent: Node?
+
+  init(value: String) {
+    self.value = value
+  }
+
+  func add(child: Node) {
+    children.append(child)
+    child.parent = self
+  }
+}
+let beverages = Node(value: "beverages")
+
+let hotBeverages = Node(value: "hot")
+let coldBeverages = Node(value: "cold")
+
+beverages.add(child: hotBeverages)
+beverages.add(child: coldBeverages)
+print(coldBeverages.parent?.value)      // "beverages"
+```
+### Binary Tree: {Left, Node, Right} -> where Left is smaller than Node and Right is greater than Node
+```
+class TreeNode<T> {
+    
+    var data: T
+    var leftNode: TreeNode?
+    var rightNode: TreeNode?
+    
+    init(data: T,
+         leftNode: TreeNode? = nil,
+         rightNode: TreeNode? = nil) {
+        self.data = data
+        self.leftNode = leftNode
+        self.rightNode = rightNode
+    }
+}
+
+class BinaryTree<T: Comparable & CustomStringConvertible> {
+    
+    private var rootNode: TreeNode<T>?
+    
+    func insert(element: T) {
+        let node = TreeNode(data: element)
+        if let rootNode = self.rootNode {
+            self.insert(rootNode, node)
+        } else {
+            self.rootNode = node
+        }
+    }
+    
+    // RECURSIVE FUNCTION
+    private func insert(_ rootNode: TreeNode<T>, _ node: TreeNode<T>) {
+        if rootNode.data > node.data {
+            if let leftNode = rootNode.leftNode {
+                self.insert(leftNode, node)
+            } else {
+                rootNode.leftNode = node
+            }
+        } else {
+            if let rightNode = rootNode.rightNode {
+                self.insert(rightNode, node)
+            } else {
+                rootNode.rightNode = node
+            }
+        }
+    }
+}
+
+extension BinaryTree {
+
+   func traverse() {
+       print("\nPRE-ORDER TRAVERSE")
+       self.preorder(self.rootNode)
+       print("\n\nIN-ORDER TRAVERSE")
+       self.inorder(self.rootNode)
+       print("\n\nPOST-ORDER TRAVERSE")
+       self.postorder(self.rootNode)
+       print("\n")
+   }
+  
+  // LNR : LEFT NODE RIGHT
+  private func inorder(_ node: TreeNode<T>?) {
+      guard let _ = node else { return }
+      self.inorder(node?.leftNode)
+      print("\(node!.data)", terminator: " ")
+      self.inorder(node?.rightNode)
+  }
+  
+  // NLR : NODE LEFT RIGHT
+  private func preorder(_ node: TreeNode<T>?) {
+      guard let _ = node else { return }
+      print("\(node!.data)", terminator: " ")
+      self.preorder(node?.leftNode)
+      self.preorder(node?.rightNode)
+  }
+  
+  // LRN :  LEFT RIGHT NODE
+  private func postorder(_ node: TreeNode<T>?) {
+      guard let _ = node else { return }
+      self.postorder(node?.leftNode)
+      self.postorder(node?.rightNode)
+      print("\(node!.data)", terminator: " ")
+  }
+}
+
+let tree = BinaryTree<String>()
+
+tree.insert(element: "F")
+tree.insert(element: "G")
+tree.insert(element: "H")
+tree.insert(element: "D")
+tree.insert(element: "E")
+tree.insert(element: "I")
+tree.insert(element: "J")
+tree.insert(element: "A")
+tree.insert(element: "B")
+tree.insert(element: "C")
+
+tree.traverse()
+
+/*
+ Output:
+ PRE-ORDER TRAVERSE
+ F D A B C E G H I J
+
+ IN-ORDER TRAVERSE
+ A B C D E F G H I J
+
+ POST-ORDER TRAVERSE
+ C B A E D J I H G F
+ 
+ */
+
+```
+
+### Binary Search Tree:
+For above algorithm, add following code:
+```
+extension BinaryTree {
+    
+    func search(element: T) {
+        self.search(self.rootNode, element)
+    }
+    
+    private func search(_ rootNode: TreeNode<T>?, _ element: T) {
+        
+        guard let rootNode = rootNode else {
+            print("INVALID NODE : \(element)")
+            return
+        }
+        
+        print("ROOT NODE \(rootNode.data)")
+        if element > rootNode.data {
+            self.search(rootNode.rightNode, element)
+        } else if element < rootNode.data {
+            self.search(rootNode.leftNode, element)
+        } else {
+           print("NODE FOUND : \(rootNode.data)")
+        }
+    }
+}
+```
+
 ## Swap:
 ```
 Swap(&a, &b)
