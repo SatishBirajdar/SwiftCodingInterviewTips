@@ -1,9 +1,10 @@
 # Swift Coding Interview Revision/tips:
 
-- Use guard where necessary to “force stop/return” the function 
+- Solve the problem on the paper first.
+- Choose datastructure appropraitely.
+- Try to add empty, out of bounds or negative input edge cases in the algorithm. Use guard where necessary to “force stop/return” the function. 
 - Use recursion where necessary
 - Try avoiding algorithm with O(n^2)
-- Try to add empty, out of bounds or negative input edge cases in the algorithm
 
 ## Some Concepts:
 ### Enumerated:
