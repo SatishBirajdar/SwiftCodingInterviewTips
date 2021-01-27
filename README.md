@@ -415,3 +415,6 @@ let largest = binaryGaps.reduce(Int.min, { max($0, $1) })
 ```
 binaryGaps.isEmpty  ==> checks if empty
 ```
+
+## Software Architect role tips:
+[Architect tips](http://www.7loops.com/software-architect-interview-questions/#Principal_Engineer)
