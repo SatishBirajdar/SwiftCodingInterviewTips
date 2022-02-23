@@ -407,6 +407,22 @@ print(str)
 ```
 let characters = Array(string)    // or use flatMap
 ```
+
+### Char to ASCII:
+```
+let i = Character("a").asciiValue 
+```
+
+### ASCII to char:
+```
+let c = Character(UnicodeScalar(65))
+```
+
+### ASCII to char:
+```
+let c = Character(UnicodeScalar(65))
+```
+
 ### Largest number of Array:
 ```
 let largest = binaryGaps.reduce(Int.min, { max($0, $1) })
